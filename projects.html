@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        /* Background Animation */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #d3d3d3, #ffffff);
+        }
+
+        /* Animated Background with Glow Effect */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('image/vivid-blurred-colorful-wallpaper-background.jpg') no-repeat center center/cover;
+            animation: fadeSlide 1s infinite alternate, glow 1s infinite alternate;
+        }
+
+        @keyframes fadeSlide {
+            0% { filter: brightness(0.8) blur(2px); transform: scale(1.1); }
+            100% { filter: brightness(1) blur(0px); transform: scale(1); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0px 0px 20px rgba(0, 195, 255, 0.5); }
+            100% { box-shadow: 0px 0px 50px rgba(0, 195, 255, 0.9); }
+        }
+
+        /* Project Popup Styling */
+        #projects {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 450px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            z-index: 1001;
+            border: 3px solid rgba(0, 195, 255, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        /* Project List Styling */
+        .project-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .project-list li {
+            margin: 12px 0;
+        }
+
+        .project-list a {
+            color: #00c3ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .project-list a:hover {
+            color: #ffcc00;
+            transform: scale(1.2);
+            text-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+        }
+
+        /* Buttons */
+        .button {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .show-projects-btn {
+            position: absolute;
+            top: 45%;
+            left: 40%;
+            transform: translate(-5%,-10%);
+            background: linear-gradient(135deg, #ff007f, #ff00ff);
+            color: white;
+            box-shadow: 0px 0px 50px rgba(255, 0, 127, 0.8);
+            animation: pulse 100s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0px 0px 20px rgba(255, 0, 127, 0.8); }
+            to { box-shadow: 0px 0px 35px rgba(255, 0, 127, 1); }
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+        }
+
+        .close-btn:hover, .show-projects-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Home and Navigation Buttons */
+        .home-btn, .arrow-btn {
+            position: fixed;
+            bottom: 20px;
+            background: #00c3ff;
+            color: white;
+            font-size: 24px;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .home-btn { left: 20px; }
+        .arrow-btn { right: 20px; }
+
+        .home-btn:hover, .arrow-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 195, 255, 1);
+        }
+
+        /* Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* JavaScript-controlled Animations */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translate(-50%, -50%) scale(1) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Show Projects Button -->
+    <button class="button show-projects-btn" onclick="showProjects()">Show My Projects</button>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" onclick="closeProjects()"></div>
+
+    <!-- Projects Popup -->
+    <div id="projects">
+        <h2>My Projects</h2>
+        <ul class="project-list">
+            <li><a href="https://github.com/yourusername/project1" target="_blank">E-COMMERCE</a></li>
+            <li><a href="https://github.com/yourusername/project2" target="_blank">WEATHER ANALYSIS</a></li>
+            <li><a href="https://github.com/yourusername/project3" target="_blank">CHAT APPLICATION</a></li>
+            <li><a href="https://github.com/yourusername/project4" target="_blank">CHATBOT</a></li>
+        </ul>
+        <button class="button close-btn" onclick="closeProjects()">Close</button>
+    </div>
+
+    <!-- Home and Right Arrow Buttons -->
+    <button class="button home-btn" onclick="navigateToHome()">←</button>
+    <a href="contac.html" class="button arrow-btn">➡</a>
+
+    <script>
+        function navigateToHome() {
+            window.location.href = 'qualification.html';
+        }
+
+        function showProjects() {
+            const projects = document.getElementById("projects");
+            const overlay = document.querySelector(".popup-overlay");
+            projects.style.display = "block";
+            overlay.style.display = "block";
+            setTimeout(() => projects.classList.add("fade-in"), 10);
+        }
+
+        function closeProjects() {
+            const projects = document.getElementById("projects");
+            const overlay = document.querySelector(".popup-overlay");
+            projects.classList.remove("fade-in");
+            setTimeout(() => {
+                projects.style.display = "none";
+                overlay.style.display = "none";
+            }, 500);
+        }
+    </script>
+</body>
+</html>

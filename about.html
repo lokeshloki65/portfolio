@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        /* Background Styling */
+        body {
+            background-color: #000;
+            color: white;
+            font-family: "Poppins", sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Box */
+        .container {
+            max-width: 70%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            margin: 100px auto;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Title Styling */
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: rgb(237, 28, 28);
+            line-height: 1.6;
+            animation: glow 10s infinite ease-in-out;
+        }
+
+        /* Paragraph Styling */
+        .about-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+            line-height: 1.6;
+            animation: floatText 5s infinite ease-in-out;
+        }
+
+        /* Home Button Styling - Positioned at Bottom Left */
+        .home-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px;
+            font-size: 22px;
+            background: #00c3ff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 195, 255, 1);
+        }
+
+        /* Right Arrow Button - Positioned at Bottom Right */
+        .arrow-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px;
+            font-size: 22px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .arrow-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 152, 0, 1);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatText {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ABOUT ME</h1>
+        <p class="about-text">
+           
+I'm Lokesh from Vellore, an enthusiastic and dedicated second-year B.Tech student in Artificial Intelligence & Data Science. I have a strong foundation in computer science and a passion for software and web development. I am eager to apply my skills, work on innovative projects, and grow professionally in the field of technology. My aspiration is to become a well-rounded software and web developer.
+
+        </p>
+    </div>
+
+    <!-- Home Button at Bottom-Left -->
+    <button class="home-btn" onclick="navigateToHome()">🏠</button>
+
+    <!-- Right Arrow Button at Bottom-Right -->
+    <button class="arrow-btn" onclick="navigateToSkills()">➡</button>
+
+    <script>
+        function navigateToHome() {
+            window.location.href = 'index.html'; // Change to your actual home page file
+        }
+
+        function navigateToSkills() {
+            window.location.href = 'skill.html'; // Change to your actual skills page file
+        }
+    </script>
+
+</body>
+</html>

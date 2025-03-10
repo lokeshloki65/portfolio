@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Qualifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(120deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .education-header {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .education-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            gap: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            transform: scale(0.8) translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .education-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #0ff;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .home-btn, .arrow-btn {
+            position: fixed;
+            bottom: 20px;
+            padding: 10px 15px;
+            font-size: 24px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .home-btn {
+            left: 20px;
+            background: #00c3ff;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.8);
+        }
+
+        .arrow-btn {
+            right: 20px;
+            background: #1491cf;
+            box-shadow: 0 0 15px rgba(12, 152, 227, 0.8);
+        }
+
+        .home-btn:hover, .arrow-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="education-header">
+        <h2>Education Qualifications</h2>
+    </div>
+
+    <div class="education-item">
+        <img src="image/svhec.png" alt="University">
+        <div>
+            <h3> B.Tech/ARTIFICIAL INTELLIGENCE AND DATA SCIENCE</h3>
+            <p><span>Institution:</span> Shree Venkateshwara Hi-Tech Engineering College, Gobi</p>
+            <p><span>Year:</span> 2023 - 2027</p>
+        </div>
+    </div>
+
+    <div class="education-item">
+        <img src="image/ssvms.JPG" alt="High School">
+        <div>
+            <h4>Secondary School Certificate (SSC)</h4>
+            <p><span>Institution:</span> Sri Saraswathi Matric School, Vellore</p>
+            <p><span>Year:</span> 2020 - 2021</p>
+        </div>
+    </div>
+
+    <div class="education-item">
+        <img src="image/ssvms.JPG" alt="SSC">
+        <div>
+            <h5>Higher Secondary Education (HSE)</h5>
+            <p><span>Institution:</span> Sri Saraswathi Matric School, Vellore</p>
+            <p><span>Year:</span> 2022 - 2023</p>
+            <p><span>Grade:</span> 62.5%</p>
+        </div>
+    </div>
+
+    <button class="home-btn" onclick="navigateToHome()">←</button>
+    <button class="arrow-btn" onclick="navigateToSkills()">➡</button>
+
+    <script>
+        function navigateToHome() {
+            window.location.href = 'skill.html';
+        }
+
+        function navigateToSkills() {
+            window.location.href = 'projects.html';
+        }
+
+       
+        function updateGlowEffect() {
+            let cards = document.querySelectorAll('.education-item');
+            let windowHeight = window.innerHeight;
+            let centerPoint = window.scrollY + windowHeight / 3; // 
+
+            let closestCard = null;
+            let minDistance = Infinity;
+
+            cards.forEach(card => {
+                let cardRect = card.getBoundingClientRect();
+                let cardCenter = cardRect.top + cardRect.height / 3;
+
+                let distance = Math.abs(centerPoint - (window.scrollY + cardCenter));
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestCard = card;
+                }
+            });
+
+            // Apply glow effect to the closest card
+            cards.forEach(card => {
+                if (card === closestCard) {
+                    card.style.boxShadow = "0 0 50px rgba(0, 255, 255, 1)"; // Strong glow effect
+                    card.querySelector("img").style.boxShadow = "0 0 40px rgba(0, 255, 255, 0.8)";
+                    card.querySelector("h3").style.textShadow = "0 0 20px rgba(255, 255, 255, 0.8)";
+                    card.style.transform = "scale(1.05)";
+                } else {
+                    card.style.boxShadow = "0 0 20px rgba(0, 255, 255, 0.2)";
+                    card.querySelector("img").style.boxShadow = "0 0 20px rgba(0, 255, 255, 0.3)";
+                    card.querySelector("h3").style.textShadow = "none";
+                    card.style.transform = "scale(1)";
+                    
+                    
+                    
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateGlowEffect);
+        window.addEventListener('load', updateGlowEffect);
+
+        // Faster Auto Scroll
+        let scrollSpeed = 20; // Adjust speed (Lower value = faster scroll)
+        let isUserInteracting = false;
+        
+        function startAutoScroll() {
+            autoScroll = setInterval(() => {
+                if (!isUserInteracting) {
+                    window.scrollBy(0, 2); // Increase scrolling speed
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            }, scrollSpeed);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScroll);
+            isUserInteracting = true;
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 5);
+        }
+
+        document.addEventListener('scroll', stopAutoScroll);
+        document.addEventListener('click', stopAutoScroll);
+        document.addEventListener('touchstart', stopAutoScroll);
+
+        startAutoScroll();
+        
+    </script>
+</body>
+</html>

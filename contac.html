@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Portfolio</title>
+    <style>
+        /* General Styles */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s infinite alternate;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Container - 3 Columns Layout */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin: 50px auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards ease-out;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Skill Card */
+        .skill-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: rgba(67, 123, 158, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(14, 185, 42, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glowing Effect */
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(35, 20, 193, 0.3) 10%, transparent 80%);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+            transform: rotate(30deg);
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Image */
+        .skill-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .skill-card img:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* Button */
+        .skill-card button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            outline: none;
+            margin-top: 10px;
+            position: relative;
+            z-index: 10; /* Ensure buttons are clickable */
+        }
+
+        .skill-card button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            position: fixed;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(75, 7, 184, 0.5);
+            color: white;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.8);
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+        }
+
+        .home-btn { left: 20px; }
+        .resume-btn { right: 20px; background: #ff5722; }
+
+        /* Responsive - Mobile (1 Column) */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="skill-card">
+            <img src="image/insta.jpg" alt="INSTAGRAM">
+            <h3>Instagram</h3>
+            <button onclick="window.open('https://www.instagram.com/lovely_loki._65/', '_blank')">FOLLOW</button>
+        </div>
+
+        <div class="skill-card">
+            <img src="image/gmail1.jpg" alt="Gmail">
+            <h3>Gmail</h3>
+            <button onclick="window.open('mailto:Lokesh152005@gmail.com?subject=Contact&body=Hello%20LOKESH%20M.', '_self')">MAIL ME</button>
+        </div>
+
+        <div class="skill-card">
+            <img src="image/linkedin1.webp" alt="LinkedIn">
+            <h3>LinkedIn</h3>
+            <button onclick="window.open('https://www.linkedin.com/in/lokesh-loki-265b832b3/', '_blank')">CONNECT</button>
+        </div>
+
+        <div class="skill-card">
+            <img src="image/github.png" alt="GitHub">
+            <h3>GitHub</h3>
+            <button onclick="window.open('https://github.com/lOKESHM152005', '_blank')">VIEW REPOSITORY</button>
+        </div>
+
+        <div class="skill-card">
+            <img src="image/x-logo.webp" alt="Twitter">
+            <h3>Twitter</h3>
+            <button onclick="window.open('https://x.com/LOKESHM935732?t=iKVxWXF2--G2FwLwhwjO1g&s=09', '_blank')">FOLLOW</button>
+        </div>
+
+        <div class="skill-card">
+            <img src="image/whatsapp.png" alt="WhatsApp">
+            <h3>WhatsApp</h3>
+            <button onclick="window.open('https://wa.me/919655865777?text=Hello%20Lokesh,%20I%20want%20to%20connect%20with%20you!', '_blank')">CHAT NOW</button>
+        </div>
+    </div>
+
+    <!-- Home & Resume Buttons -->
+    <button class="nav-btn home-btn" onclick="navigateToHome()">🏠</button>
+    <button class="nav-btn resume-btn" onclick="navigateToResume()">📄</button>
+
+    <script>
+        function navigateToHome() {
+            window.location.href = 'index.html';
+        }
+        function navigateToResume() {
+            window.location.href = 'image/RESUME.pdf';
+        }
+    </script>
+</body>
+</html>

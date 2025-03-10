@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            padding-top: 50px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .skill-card {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            width: 80%;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            transform: scale(0.8) translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .skill-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .skill-card img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid #0ff;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .skill-card h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: text-shadow 0.3s;
+        }
+
+        .arrow {
+            position: fixed;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 255, 0.3);
+            color: white;
+            border-radius: 50%;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+
+        .left-arrow {
+            left: 20px;
+        }
+
+        .right-arrow {
+            right: 20px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="skill-card">
+        <img src="image/html5.jpg" alt="HTML">
+        <h3>HTML</h3>
+    </div>
+
+    <div class="skill-card">
+        <img src="image/css 8.jpeg" alt="CSS">
+        <h3>CSS</h3>
+    </div>
+
+    <div class="skill-card">
+        <img src="image/java 3.png" alt="Java">
+        <h3>Java</h3>
+    </div>
+
+    <div class="skill-card">
+        <img src="image/py1.jpg" alt="Python">
+        <h3>Python</h3>
+    </div>
+
+    <div class="skill-card">
+        <img src="image/mysql11.png" alt="MySQL">
+        <h3>MySQL</h3>
+    </div>
+
+    <footer>@2025 All rights reserved in Lokii</footer>
+
+    <button class="arrow left-arrow" onclick="navigateToAbout()">←</button>
+    <button class="arrow right-arrow" onclick="navigateToQualifications()">→</button>
+
+    <script>
+        function navigateToAbout() {
+            window.location.href = 'about.html'; // Navigates to about.html
+        }
+
+        function navigateToQualifications() {
+            window.location.href = 'qualification.html'; // Navigates to Qualifications.html
+        }
+
+        function updateGlowEffect() {
+            let cards = document.querySelectorAll('.skill-card');
+            let windowHeight = window.innerHeight;
+            let centerPoint = window.scrollY + windowHeight / 2; // Center of the viewport
+
+            let closestCard = null;
+            let minDistance = Infinity;
+
+            cards.forEach(card => {
+                let cardRect = card.getBoundingClientRect();
+                let cardCenter = cardRect.top + cardRect.height / 2;
+
+                let distance = Math.abs(centerPoint - (window.scrollY + cardCenter));
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestCard = card;
+                }
+            });
+
+            // Apply glow effect to the closest card
+            cards.forEach(card => {
+                if (card === closestCard) {
+                    card.style.boxShadow = "0 0 50px rgba(0, 255, 255, 1)"; // Strong glow effect
+                    card.querySelector("img").style.boxShadow = "0 0 40px rgba(0, 255, 255, 0.8)";
+                    card.querySelector("h3").style.textShadow = "0 0 20px rgba(255, 255, 255, 0.8)";
+                    card.style.transform = "scale(1.05)";
+                } else {
+                    card.style.boxShadow = "0 0 20px rgba(0, 255, 255, 0.2)";
+                    card.querySelector("img").style.boxShadow = "0 0 20px rgba(0, 255, 255, 0.3)";
+                    card.querySelector("h3").style.textShadow = "none";
+                    card.style.transform = "scale(1)";
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateGlowEffect);
+        window.addEventListener('load', updateGlowEffect);
+
+        // Faster Auto Scroll
+        let scrollSpeed = 10; // Adjust speed (Lower value = faster scroll)
+        let isUserInteracting = false;
+        
+        function startAutoScroll() {
+            autoScroll = setInterval(() => {
+                if (!isUserInteracting) {
+                    window.scrollBy(0, 2); // Increase scrolling speed
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            }, scrollSpeed);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScroll);
+            isUserInteracting = true;
+            setTimeout(() => {
+                isUserInteracting = false;
+                startAutoScroll();
+            }, 10);
+        }
+
+        document.addEventListener('scroll', stopAutoScroll);
+        document.addEventListener('click', stopAutoScroll);
+        document.addEventListener('touchstart', stopAutoScroll);
+
+        startAutoScroll();
+        
+    </script>
+
+</body>
+</html>
